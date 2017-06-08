@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class CopyAndMove {
 
@@ -19,13 +20,13 @@ public class CopyAndMove {
     	
     	byte[] myData = new byte[] {5, 6, 7, 8, 127, 65, 5, 6, 7, 8, 127, 65,5, 6, 7, 8, 127, 65};
 //    	String outPath = "example.txt";
-    	CopyAndMove.write(myData,"out.txt");
-        String filePath = "example.txt";
+    	CopyAndMove.write(myData,"friday.txt");
+        String input = "example.txt";
         byte[] buf = new byte[100];
         byte[] data = null;
         int dataIdx = 0;
         try {
-            RandomAccessFile f = new RandomAccessFile(filePath, "r");
+            RandomAccessFile f = new RandomAccessFile(input, "r");
             data = new byte[(int) f.length()];
             while (true) {
                 int nBytes = f.read(buf);
@@ -44,7 +45,8 @@ public class CopyAndMove {
         } catch (IOException ex) {
 			System.out.println("there is an IO exception.");
 		}
-        Charset cs = Charset.forName("UTF-8");
+//        Charset cs = Charset.forName("UTF-8");
+        Charset cs = StandardCharsets.UTF_8;
         String s = new String(data, cs);
 //        System.out.println(s);
     }
